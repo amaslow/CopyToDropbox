@@ -38,7 +38,7 @@ public class CopyToDropbox {
             String files[] = srcPath.list();
             int x = 0;
             for (int i = 0; i < files.length; i++) {
-                if (files[i].startsWith("Package") || files[i].startsWith("Rating")
+                if (files[i].startsWith("Packag") || files[i].startsWith("Rating")
                         || files[i].startsWith("Installation") || files[i].startsWith("Inlay")
                         || files[i].startsWith("CDlabel") || files[i].startsWith("Sticker")
                         || files[i].startsWith("Banderol") || files[i].startsWith("Silkscreen")

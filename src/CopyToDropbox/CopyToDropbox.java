@@ -7,20 +7,23 @@ import java.util.Date;
 public class CopyToDropbox {
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//    public static String productContent = "G:\\Product Content\\PRODUCTS\\";
+    public static String productContent = "X:\\Smartwares - Product Content\\PRODUCTS\\";
 
     public static void main(String[] args) throws IOException {
-        File file = new File("G:\\Product Content\\PRODUCTS\\");
+        File file = new File(productContent);
+        
         String[] directories = file.list(new FilenameFilter() {
 
             @Override
             public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
+                    return new File(current, name).isDirectory();
             }
         });
 
         for (int i = 0; i < directories.length; i++) {
             CopyToDropbox cd = new CopyToDropbox();
-            String source = "G:\\Product Content\\PRODUCTS\\" + directories[i];
+            String source = productContent + directories[i];
             File src = new File(source);
             String destination = "C:\\Dropbox\\SSL Lighting-update artwork\\" + directories[i];
             File dst = new File(destination);
@@ -48,7 +51,7 @@ public class CopyToDropbox {
                                 new File(dstPath, files[i]));
                         System.out.println(srcPath + "\\" + files[i] + " - " + dstPath + "\\" + files[i]);
                         bw.newLine();
-                        bw.write("\t - " + files[i]);
+                        bw.write(sdf.format(new Date().getTime()) + "\t - " + files[i]);
                     }
                 }
 //                if (x == 0) {

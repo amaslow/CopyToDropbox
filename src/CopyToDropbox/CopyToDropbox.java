@@ -46,7 +46,11 @@ public class CopyToDropbox {
                         || files[i].startsWith("CDlabel") || files[i].startsWith("Sticker")
                         || files[i].startsWith("Banderol") || files[i].startsWith("Silkscreen")
                         || files[i].startsWith("Manual_")) {
-                    if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists()) || (sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))) {
+                    if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists()) || 
+                            //(sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
+                            (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (17* 1000 * 60 * 60 * 24))))
+                            ) {
+                                                                                                                             
                         CopyToDropbox(new File(srcPath, files[i]),
                                 new File(dstPath, files[i]));
                         System.out.println(srcPath + "\\" + files[i] + " - " + dstPath + "\\" + files[i]);

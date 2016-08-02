@@ -8,7 +8,7 @@ public class CopyToDropbox {
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 //    public static String productContent = "G:\\Product Content\\PRODUCTS\\";
-    public static String productContent = "X:\\Smartwares - Product Content\\PRODUCTS\\";
+    public static String productContent = "\\\\172.16.55.197\\design\\Smartwares - Product Content\\PRODUCTS\\";
 
     public static void main(String[] args) throws IOException {
         File file = new File(productContent);
@@ -48,7 +48,7 @@ public class CopyToDropbox {
                         || files[i].startsWith("Manual_")) {
                     if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists()) || 
                             //(sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
-                            (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (17* 1000 * 60 * 60 * 24))))
+                            (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (1* 1000 * 60 * 60 * 24))))
                             ) {
                                                                                                                              
                         CopyToDropbox(new File(srcPath, files[i]),

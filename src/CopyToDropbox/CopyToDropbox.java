@@ -7,17 +7,17 @@ import java.util.Date;
 public class CopyToDropbox {
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//    public static String productContent = "G:\\Product Content\\PRODUCTS\\";
     public static String productContent = "\\\\172.16.55.197\\design\\Smartwares - Product Content\\PRODUCTS\\";
+    public static String logFile = "\\\\srvdata\\Data\\Automatisering\\Artur\\Logs\\CopyToDropbox.log";
 
     public static void main(String[] args) throws IOException {
         File file = new File(productContent);
-        
+
         String[] directories = file.list(new FilenameFilter() {
 
             @Override
             public boolean accept(File current, String name) {
-                    return new File(current, name).isDirectory();
+                return new File(current, name).isDirectory();
             }
         });
 
@@ -32,7 +32,7 @@ public class CopyToDropbox {
     }
 
     public void CopyToDropbox(File srcPath, File dstPath) throws IOException {
-        FileWriter fw = new FileWriter("H:/Logs/CopyToDropbox.log", true);
+        FileWriter fw = new FileWriter(logFile, true);
         BufferedWriter bw = new BufferedWriter(fw);
         if (srcPath.isDirectory()) {
             if (!dstPath.exists()) {
@@ -46,11 +46,10 @@ public class CopyToDropbox {
                         || files[i].startsWith("CDlabel") || files[i].startsWith("Sticker")
                         || files[i].startsWith("Banderol") || files[i].startsWith("Silkscreen")
                         || files[i].startsWith("Manual_")) {
-                    if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists()) || 
-                            //(sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
-                            (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (1* 1000 * 60 * 60 * 24))))
-                            ) {
-                                                                                                                             
+                    if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists())
+                            || //(sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
+                            (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (1 * 1000 * 60 * 60 * 24))))) {
+
                         CopyToDropbox(new File(srcPath, files[i]),
                                 new File(dstPath, files[i]));
                         System.out.println(srcPath + "\\" + files[i] + " - " + dstPath + "\\" + files[i]);

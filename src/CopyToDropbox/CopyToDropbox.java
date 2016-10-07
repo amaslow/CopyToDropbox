@@ -41,22 +41,22 @@ public class CopyToDropbox {
             String files[] = srcPath.list();
             int x = 0;
             for (int i = 0; i < files.length; i++) {
-                if (files[i].startsWith("Packag") || files[i].startsWith("Rating")
-                        || files[i].startsWith("Installation") || files[i].startsWith("Inlay")
-                        || files[i].startsWith("CDlabel") || files[i].startsWith("Sticker")
-                        || files[i].startsWith("Banderol") || files[i].startsWith("Silkscreen")
-                        || files[i].startsWith("Manual_")) {
-                    if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists())
-                            || //(sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
-                            (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (1 * 1000 * 60 * 60 * 24))))) {
+//                if (files[i].startsWith("Packag") || files[i].startsWith("Rating")
+//                        || files[i].startsWith("Installation") || files[i].startsWith("Inlay")
+//                        || files[i].startsWith("CDlabel") || files[i].startsWith("Sticker")
+//                        || files[i].startsWith("Banderol") || files[i].startsWith("Silkscreen")
+//                        || files[i].startsWith("Manual_")) {
+                if (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists())
+                        //|| (sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
+                        || (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (1 * 1000 * 60 * 60 * 24))))) {
 
-                        CopyToDropbox(new File(srcPath, files[i]),
-                                new File(dstPath, files[i]));
-                        System.out.println(srcPath + "\\" + files[i] + " - " + dstPath + "\\" + files[i]);
-                        bw.newLine();
-                        bw.write(sdf.format(new Date().getTime()) + "\t - " + files[i]);
-                    }
+                    CopyToDropbox(new File(srcPath, files[i]),
+                            new File(dstPath, files[i]));
+                    System.out.println(srcPath + "\\" + files[i] + " - " + dstPath + "\\" + files[i]);
+                    bw.newLine();
+                    bw.write(sdf.format(new Date().getTime()) + "\t - " + files[i]);
                 }
+//                }
 //                if (x == 0) {
 //                    if (files[i].startsWith("Manual_IN") && ((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists() || (new File(srcPath + "\\" + files[i])).lastModified() == (new Date().getTime()))) {
 //                            CopyToDropbox(new File(srcPath, files[i]),

@@ -49,7 +49,7 @@ public class CopyToDropbox {
                 if ((!files[i].contains("Thumbs.db")) && (!files[i].contains(".DS_Store")) &&
                         (((new File(srcPath + "\\" + files[i])).exists() && !(new File(dstPath + "\\" + files[i])).exists())
                         //|| (sdf.format((new File(srcPath + "\\" + files[i])).lastModified()).equals(sdf.format((new Date().getTime()))))
-                        || (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - (1 * 1000 * 60 * 60 * 24)))))) {
+                        || (new Date(new File((srcPath + "\\" + files[i])).lastModified()).after(new Date(new Date().getTime() - ((long)1 * 1000 * 60 * 60 * 24)))))) {
 
                     CopyToDropbox(new File(srcPath, files[i]),
                             new File(dstPath, files[i]));
